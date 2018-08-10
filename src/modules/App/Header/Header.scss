@@ -1,0 +1,47 @@
+#header {
+  background: white;
+  margin: 0 0 20px;
+  .container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .logo {
+    float: left;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+    color: black;
+    span {
+      color: #27ae60;
+    }
+  }
+  .right-nav {
+    float: right;
+    padding: 2px 0;
+    margin: 0;
+    list-style: none;
+    li {
+      display: inline-block;
+      vertical-align: top;
+      font-size: 12px;
+      line-height: 18px;
+      &:before {
+        content: '|';
+        padding: 0 5px;
+      }
+      &:first-child {
+        &:before {
+          display: none;
+        }
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+        &:hover {
+          color: #27ae60;
+        }
+      }
+    }
+  }
+}

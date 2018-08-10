@@ -6,11 +6,15 @@ import Footer from './Footer/Footer';
 
 import ROUTES from 'routes';
 
+import './App.css';
+
 const App = () => (
   <div className="app">
     <Header />
-    <Sidebar />
-    {ROUTES}
+    <div className="container">
+      <Sidebar />
+      {ROUTES}
+    </div>
     <Footer />
   </div>
 );

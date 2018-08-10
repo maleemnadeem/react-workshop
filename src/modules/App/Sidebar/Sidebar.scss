@@ -1,0 +1,37 @@
+.sidebar {
+  float: left;
+  width: 200px;
+  margin: 0 15px 15px 0;
+  background: white;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+}
+.side-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    font-weight: 700;
+    border-top: 1px solid white;
+    &:first-child {
+      border-top: none;
+    }
+    &.active {
+      a {
+        color: white;
+        background: #27ae60;
+      }
+    }
+    a {
+      display: block;
+      padding: 10px;
+      font-size: 14px;
+      line-height: 18px;
+      text-decoration: none;
+      color: black;
+      &:hover {
+        color: white;
+        background: #27ae60;
+      }
+    }
+  }
+}
