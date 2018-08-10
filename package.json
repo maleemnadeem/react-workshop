@@ -7,6 +7,8 @@
     "npm-run-all": "^4.1.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4"
   },
   "scripts": {
@@ -18,7 +20,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "format": "npm-run-all formatjs formatcss",
+    "format": "npm-run-all formatjs",
     "formatcss": "prettier --parser scss --write 'src/**/*.scss'",
     "formatjs": "prettier --write 'src/**/*.js'"
   },
