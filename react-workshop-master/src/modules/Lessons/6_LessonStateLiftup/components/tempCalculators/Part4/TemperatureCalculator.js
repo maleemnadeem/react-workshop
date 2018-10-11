@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import TempInput from './TempInput';
+import BoilingNotice from './BoilingNotice';
 
 class TemperatureCalculator extends Component {
     constructor(props) {
@@ -9,9 +10,15 @@ class TemperatureCalculator extends Component {
         this.state = {
             temperature: '',
         };
+
+        this.setTemperature = this.setTemperature.bind(this);
     }
 
-
+    setTemperature(temperature) {
+        this.setState({
+            temperature,
+        });
+    }
 
     render() {
         const { temperature } = this.state;
@@ -21,14 +28,10 @@ class TemperatureCalculator extends Component {
                 <h2>Temperature Calculator</h2>
 
                 <div className="form-holder">
-                   <TempInput
-                    unit={'oC'}
-                   />
-                    <TempInput
-                        unit={'oF'}
-                    />
+                    <TempInput unit={'0C'} onChange={this.setTemperature} />
+                    <TempInput unit={'0F'} onChange={this.setTemperature} />
+                    <BoilingNotice temperature={temperature}/>
                 </div>
-
 
             </section>
         );
