@@ -1,0 +1,19 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+
+const SearchBox = ({query, onChangeCB}) => {
+    return (
+        <div>
+            <input placeholder="Search" onChange={onChangeCB} />
+            { !query && <p>Showing ALL results</p> }
+        </div>
+    );
+};
+
+Searchbox.propTypes = {
+    query: PropTypes.string,
+    onChangeCB: PropTypes.func.isRequired,
+};
+
+export default SearchBox;
