@@ -21,7 +21,7 @@ class  PracticeUserData extends Component {
         };
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleOnSelection = this.handleOnSelection.bind(this);
-        this.handleOnGenderSelection=this.handleOnSelection.bind(this);
+        this.handleOnGenderSelection=this.handleOnGenderSelection.bind(this);
         this.handleCountriesSelect = this.handleCountriesSelect.bind(this);
         this.handleFormSubmit=this.handleFormSubmit.bind(this);
 
@@ -29,10 +29,16 @@ class  PracticeUserData extends Component {
 
     handleOnChange(event)
     {
+
         this.setState({ userName: event.target.value });
 
     }
+    handleOnGenderSelection(event){
+        console.log('radio');
+        this.setState({ selectGender: event.target.value });
+    }
     handleOnSelection(event){
+        console.log(event.target.value);
         const newSelection = event.target.value;
         let newSelectionArray;
         if(this.state.selectEducation.indexOf(newSelection) > -1) {
@@ -42,9 +48,7 @@ class  PracticeUserData extends Component {
         }
         this.setState({ selectEducation: newSelectionArray });
     }
-    handleOnGenderSelection(event){
-        this.setState({ selectGender: event.target.value });
-    }
+
     handleCountriesSelect(event){
         this.setState({ selectCountry: event.target.value });
     }
