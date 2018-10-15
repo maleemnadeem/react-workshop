@@ -2,11 +2,11 @@ import React from 'react';
 
 const GenderAndEducation = (props) => (
     <div>
-        <label className="form-label">{props.title}</label>
-        <div className="checkbox-group">
+        <label>{props.title}</label>
+        <div  id={props.setName}>
             {props.options.map(opt => {
                 return (
-                    <label key={opt} className="form-label capitalize">
+                    <label key={opt}>
                         <input
                             className="form-checkbox"
                             name={props.setName}
