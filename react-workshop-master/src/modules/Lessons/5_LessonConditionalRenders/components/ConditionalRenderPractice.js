@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import AssignmentDetails from './AssignmentDetails';
+// import AssignmentDetails from './AssignmentDetails';
 import NotFound from './SubComponents/NotFound'
 import Reload from './SubComponents/Reload'
 import  Loading from './SubComponents/Loading'
