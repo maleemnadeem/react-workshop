@@ -1,5 +1,5 @@
 import React from 'react';
-import AssignmentDetails from "../AssignmentDetails";
+// import AssignmentDetails from "../AssignmentDetails";
 
 const NotFound = () =>{
     return (
