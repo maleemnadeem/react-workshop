@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Name from './formcomponents/Name';
 import GenderAndEducation from './formcomponents/GenderAndEducation';
+import Country from './formcomponents/Country'
+import Gender from './formcomponents/Gender'
+import Countries from '/home/aleem/ReactRepo/react-workshop/react-workshop-master/src/util/countries'
 
 class  PracticeUserData extends Component {
 
@@ -9,14 +12,18 @@ class  PracticeUserData extends Component {
         this.state = {
             userName: '',
             education: ['Graduation','Post Grad'],
-            countries: [],
+            countries: Countries,
             gender:['Male','Female'],
             selectEducation:[],
-            selectGender:''
+            selectGender:'',
+            selectCountry:''
 
         };
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleOnSelection = this.handleOnSelection.bind(this);
+        this.handleOnGenderSelection=this.handleOnSelection.bind(this);
+        this.handleCountriesSelect = this.handleCountriesSelect.bind(this);
+        this.handleFormSubmit=this.handleFormSubmit.bind(this);
 
     };
 
@@ -38,13 +45,24 @@ class  PracticeUserData extends Component {
     handleOnGenderSelection(event){
         this.setState({ selectGender: event.target.value });
     }
+    handleCountriesSelect(event){
+        this.setState({ selectCountry: event.target.value });
+    }
+    handleFormSubmit(e){
+        e.preventDefault();
+        console.log(JSON.stringify(this.state.selectCountry));
+        console.log(JSON.stringify(this.state.selectEducation));
+        console.log(JSON.stringify(this.state.userName));
+        console.log(JSON.stringify(this.state.selectGender));
+
+    }
 
 render() {
 
   return (
       <section className="lesson-practice-user-data info-panel">
         <h2>User Signup Form</h2>
-        <form>
+        <form onSubmit={this.handleFormSubmit}>
 
 
           <fieldset>
@@ -57,7 +75,7 @@ render() {
               />
           </fieldset>
             <fieldset>
-                <GenderAndEducation
+                <Gender
                     setName={'Gender'}
                     type={'radio'}
                     controlFunc={this.handleOnGenderSelection}
@@ -71,6 +89,14 @@ render() {
                     controlFunc={this.handleOnSelection}
                     options={this.state.education}
                     selectedOptions={this.state.selectEducation} />
+            </fieldset>
+            <fieldset>
+                <Country
+                    name={'Country'}
+                    placeholder={'Select Country'}
+                    controlFunc={this.handleCountriesSelect}
+                    options={this.state.countries}
+                    selectedOption={this.state.selectCountry} />
             </fieldset>
           <input type="submit" value="Sign Up" />
         </form>
