@@ -1,27 +1,33 @@
-import React from 'react'
-import PropsType from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const UserCard = ({userDate}) =>{
-    return(
-        <div>
-            <img src={userDate.path} alter="No Pic Available" width="100" />
-            <table>
+const UserCard = ({user}) => {
+    return (
+        <div className="card user">
+            <img src={user.avatar_url} alt="User Profile" width="100" />
+            <table className="info-table">
+                <tbody>
                 <tr>
                     <td><strong>Login</strong></td>
-                    <td>{userData.login}</td>
+                    <td>{user.login}</td>
                 </tr>
-                 <tr>
+                <tr>
                     <td><strong>URL</strong></td>
-                    <td><a href={userData.url}/>{userData.login}</td>
-                 </tr>
+                    <td><a href={user.html_url}>{user.login}</a></td>
+                </tr>
                 <tr>
                     <td><strong>Type</strong></td>
-                    <td>{userData.type}{userData.site_admin && <strong> / Admin</strong>}</td>
+                    <td>{user.type}{user.site_admin && <strong> / Admin</strong>}</td>
                 </tr>
-
+                </tbody>
             </table>
-            <button>View Repositories</button>
+            <button className="action-btn">View Repositories</button>
         </div>
     );
-
 };
+
+UserCard.propTypes = {
+    user: PropTypes.object.isRequired,
+};
+
+export default UserCard;
