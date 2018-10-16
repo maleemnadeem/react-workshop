@@ -1,9 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import ReactLoader from 'react-loading';
 import axios from 'axios';
-import ErrorMessage from './ErrorMessage/ErrorMessage'
-import UserCard from './UserCard/UserCard'
-import SearchBox from './SearchBox/SearchBox'
+import ErrorMessage from './ErrorMessage/ErrorMessage';
+import UserCard from './UserCard/UserCard';
+import SearchBox from './SearchBox/SearchBox';
+import Card from './Card/Card';
 
 
 class GitDashboard extends Component {
@@ -15,20 +16,26 @@ class GitDashboard extends Component {
         isLoading:true,
         errorLoading:false,
         searchQuery:'',
+        cardType:'',
     };
     this.loadData=this.loadData.bind(this);
     this.onQueryTextChange=this.onQueryTextChange.bind(this);
+    this.loadRepo=this.loadRepo.bind(this);
   }
     componentWillMount() {
         this.loadData();
     }
 
   loadData(){
+      this.setState({
+          cardType: 'user',
+      });
     axios.get('https://api.github.com/users')
         .then(({data})=>{
           this.setState(
               {
                   isLoading:!this.state.isLoading,
+                  cardType:'user',
                   data,
               }
           );
@@ -36,11 +43,38 @@ class GitDashboard extends Component {
           console.log('Data is not loading',response) ;
           this.setState({
               isLoading:!this.state.isLoading,
+              cardType:'',
               errorLoading:response,
           });
         }
 
     );
+  }
+
+  loadRepo(repoUrl){
+      this.setState(
+          {
+              isLoading: !this.state.isLoading,
+              cardType:'repo',
+          }
+      );
+      axios.get(repoUrl)
+          .then(({data}) => {
+              this.setState({
+                  isLoading: !this.state.isLoading,
+                  data,
+              });
+          })
+          .catch(response => {
+              console.error('Error while fetching Repos..', response);
+              this.setState({
+                  isLoading: !this.state.isLoading,
+                  errorLoading: response,
+              });
+          });
+
+
+
   }
 
   onQueryTextChange(event){
@@ -52,7 +86,8 @@ class GitDashboard extends Component {
   }
 
   render() {
-      const { isLoading, errorLoading, data ,searchQuery} = this.state;
+      const { isLoading, errorLoading, data ,searchQuery,cardType} = this.state;
+      const onClickHandler = cardType === 'user' ? this.loadRepo : null;
     return (
         <div>
           <h4>Git Dashboard</h4>
@@ -68,11 +103,12 @@ class GitDashboard extends Component {
                   <Fragment>
                     <SearchBox isQuery={searchQuery} onChangeText={this.onQueryTextChange}/>
                       {
+
                           searchQuery && data.filter((user) => user.login.indexOf(searchQuery)> -1)
-                              .map((user) => <UserCard key={user.id} user={user}/>)
+                              .map((user,index) => <Card key={index} data={user} cardType={cardType} onClick={onClickHandler}/>)
                       }
                       {
-                          !searchQuery && data.map((user) => <UserCard key={user.id} user={user}/>)
+                          !searchQuery && data.map((user,index) => <Card key={index} data={user} cardType={cardType} onClick={onClickHandler}/>)
                       }
                   </Fragment>
               )
