@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const UserCard = ({user}) => {
+const UserCard = ({user,loadRepo}) => {
     return (
         <div className="card user">
             <img src={user.avatar_url} alt="User Profile" width="100" />
@@ -21,7 +21,7 @@ const UserCard = ({user}) => {
                 </tr>
                 </tbody>
             </table>
-            <button className="action-btn">View Repositories</button>
+            <button className="action-btn" onClick={() => loadRepo(user.repos_url)}>View Repositories</button>
         </div>
     );
 };
