@@ -1,5 +1,5 @@
 import React from 'react';
-import PropType from 'prop-types'
+//import PropType from 'prop-types'
 
 const ErrorMessage = ({error})=>{
 
@@ -10,3 +10,5 @@ const ErrorMessage = ({error})=>{
             </div>
     );
 };
+
+export default ErrorMessage;
