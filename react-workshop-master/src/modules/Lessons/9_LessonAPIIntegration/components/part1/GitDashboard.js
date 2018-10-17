@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import ReactLoader from 'react-loading';
 import axios from 'axios';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
-import UserCard from './UserCard/UserCard';
+//import UserCard from './UserCard/UserCard';
 import SearchBox from './SearchBox/SearchBox';
 import Card from './Card/Card';
 
@@ -88,6 +88,7 @@ class GitDashboard extends Component {
   render() {
       const { isLoading, errorLoading, data ,searchQuery,cardType} = this.state;
       const onClickHandler = cardType === 'user' ? this.loadRepo : null;
+      const searchCriteria= cardType === 'user' ? 'login' : 'name';
     return (
         <div>
           <h4>Git Dashboard</h4>
@@ -104,11 +105,11 @@ class GitDashboard extends Component {
                     <SearchBox isQuery={searchQuery} onChangeText={this.onQueryTextChange}/>
                       {
 
-                          searchQuery && data.filter((user) => user.login.indexOf(searchQuery)> -1)
-                              .map((user,index) => <Card key={index} data={user} cardType={cardType} onClick={onClickHandler}/>)
+                          searchQuery && data.filter((item) => item[searchCriteria].indexOf(searchQuery)> -1)
+                              .map((item,index) => <Card key={index} data={item} cardType={cardType} onClick={onClickHandler}/>)
                       }
                       {
-                          !searchQuery && data.map((user,index) => <Card key={index} data={user} cardType={cardType} onClick={onClickHandler}/>)
+                          !searchQuery && data.map((item,index) => <Card key={index} data={item} cardType={cardType} onClick={onClickHandler}/>)
                       }
                   </Fragment>
               )
