@@ -5,6 +5,7 @@ import EleIntro from './components/EleIntro';
 import SimpleElement from './components/SimpleReactEle';
 import EleRender from './components/EleRender';
 import EleUpdation from './components/EleUpdation';
+import EleReduxUpdation from './components/ReduxCompnents/EleReduxUpdation';
 
 const LessonElements = ({title}) => {
   return (
@@ -14,6 +15,7 @@ const LessonElements = ({title}) => {
           <SimpleElement />
           <EleRender />
           <EleUpdation />
+          <EleReduxUpdation />
         </div>
       </div>
   );
